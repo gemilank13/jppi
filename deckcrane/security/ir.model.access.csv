@@ -1,8 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_jenis_kapal,jenis_kapal,model_jenis_kapal,,1,1,1,1
-access_city,city,model_city,,1,1,1,1
-access_inspect_loc,inspect_loc,model_inspect_loc,,1,1,1,1
-access_deckcrane,deckcrane,model_deckcrane,,1,1,1,1
-access_deckcrane_ins,deckcrane_ins,model_deckcrane_ins,,1,1,1,1
-access_inspect_item,inspect_item,model_inspect_item,,1,1,1,1
-access_item,item,model_item,,1,1,1,1
