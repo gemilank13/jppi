@@ -1,7 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_klasifikasi_perkara,klasifikasi_perkara,model_klasifikasi_perkara,hukum_manager,1,1,1,1
-access_tahapan_perkara,tahapan_perkara,model_tahapan_perkara,hukum_manager,1,1,1,1
-access_perkara_hukum,perkara_hukum,model_perkara_hukum,hukum_manager,1,1,1,1
-access_tahapan_perkara_history,tahapan_perkara_history,model_tahapan_perkara_history,hukum_manager,1,1,1,1
-access_lampiran_lampiran,lampiran_lampiran,model_lampiran_lampiran,hukum_manager,1,1,1,1
-access_para_pihak,para_pihak,model_para_pihak,hukum_manager,1,1,1,1
