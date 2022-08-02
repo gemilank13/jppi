@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="inspection_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+
+                    <div class="header">
+                        <div class="row">
+                            <div class="col-6">
+                                <img src='https://pelni.co.id/cfind/source/thumb/images/cover_w886_h498_icon%20pelni%202.png' style="width:200px;float:left;"/>
+                            </div>
+                            <div class="col-6">
+                                <img src='/web/binary/company_logo' style="width:200px;float:right;padding-top:20px;"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="page">
+                        <p><strong>5.2 Data / Spesifikasi Crane</strong></p>
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="" style="width:800px;align:center;margin-left:25px;">
+                                    <tbody>
+                                        <tr>
+                                            <td style="text-align:center;border:1px solid black;"><strong>Uraian</strong></td>
+                                            <td style="text-align:center;border:1px solid black;"><strong>Crane</strong></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td style="border:1px solid black;padding-left:5px;">Name of Ship</td>
+                                            <td style="border:1px solid black;padding-left:5px;"><span t-field="o.deckcrane_id.name"/> </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border:1px solid black;padding-left:5px;">Crane Manufacturer</td>
+                                            <td style="border:1px solid black;padding-left:5px;"><span t-field="o.deckcrane_id.ship_manufacture"/> </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border:1px solid black;padding-left:5px;">Ship Type</td>
+                                            <td style="border:1px solid black;padding-left:5px;"><span t-field="o.deckcrane_id.ship_type_id.name"/> </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <br/>
+                                <br/>
+                                <t t-foreach="o.deckcrane_id.photo_ids" t-as="deck">
+                                    <center><span t-field="deck.photo" t-options='{"widget": "image","style":"width: 700px;"}' /></center>
+                                </t>
+                            </div>
+                        </div>
+
+                        <p style="page-break-after:always;">   </p>
+                        <p><strong>5.3 Hasil Assessment</strong></p>
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="" style="width:800px;align:center;margin-left:25px;">
+                                    <thead>
+                                        <tr>
+                                            <th style="font-wight:bold;text-align:center;border:1px solid black;width:5%;">No.</th>
+                                            <th style="font-wight:bold;text-align:center;border:1px solid black;width:15%;">Item</th>
+                                            <th style="font-wight:bold;text-align:center;border:1px solid black;width:40%;">Foto</th>
+                                            <th style="font-wight:bold;text-align:center;border:1px solid black;width:20%;">Deskripsi</th>
+                                            <th style="font-wight:bold;text-align:center;border:1px solid black;width:20%;">Rekomendasi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-set="no" t-value="0"/>
+                                        <tr t-foreach="o.ins_item_ids" t-as="item">
+                                            <t t-set="no" t-value="no+1"/> 
+                                            <td style="border:1px solid black;padding-left:5px;"><span t-esc="no"/></td>
+                                            <td style="border:1px solid black;padding-left:5px;"><span t-field="item.name"/></td>
+                                            <td style="border:1px solid black;padding-left:5px;text-align:center"><span t-field="item.photos" t-options='{"widget": "image","style":"width: 250px;"}' /></td>
+                                            <td style="border:1px solid black;padding-left:5px;"><span t-field="item.description"/></td><td style="border:1px solid black;padding-left:5px;"><span t-field="item.recommen"/></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p style="padding-left:23px;padding-top:15px">
+                                    Kesimpulan :<br/>
+                                    <span t-field="o.notes"/>
+                                </p>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
+
