@@ -1,0 +1,106 @@
+<odoo>
+    <data>
+
+        <record id="ins_location_graph" model="ir.ui.view">
+            <field name="name">ins.location.graph</field>
+            <field name="model">deckcrane.ins</field>
+            <field name="arch" type="xml">
+                <graph string="Deck Crane by Location" type="bar">
+                    <field name="location"/>
+                    <field name="inspect_status"/>
+                </graph>
+            </field>
+        </record>
+
+        <record id="ins_schedule_graph" model="ir.ui.view">
+            <field name="name">ins.schedule.graph</field>
+            <field name="model">deckcrane.ins</field>
+            <field name="arch" type="xml">
+                <graph string="Inspection Schedule Summary" type="bar">
+                    <field name="location"/>
+                    <field name="inspect_sch_status"/>
+                </graph>
+            </field>
+        </record>
+
+        <record id="ins_deckcrane_graph" model="ir.ui.view">
+            <field name="name">ins.deckcrane.graph</field>
+            <field name="model">deckcrane</field>
+            <field name="arch" type="xml">
+                <graph string="Time Inspection Deck Crane" type="bar">
+                     <field name="city_id"/>
+                    <field name="ship_type_id"/>
+                </graph>
+            </field>
+        </record>
+
+
+
+        <!-- ACTION -->
+        <record id="action_ins_location_dashboard" model="ir.actions.act_window">
+            <field name="name">Dashboard</field>
+            <field name="res_model">deckcrane.ins</field>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="ins_location_graph"/>
+        </record>
+
+        <record id="action_ins_schedule_dashboard" model="ir.actions.act_window">
+            <field name="name">Dashboard</field>
+            <field name="res_model">deckcrane.ins</field>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="ins_schedule_graph"/>
+        </record>
+
+        <record id="action_ins_deckcrane_dashboard" model="ir.actions.act_window">
+            <field name="name">Dashboard</field>
+            <field name="res_model">deckcrane</field>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="ins_deckcrane_graph"/>
+        </record>
+
+        <record model="ir.ui.view" id="board_deckcrane">
+            <field name="name">Dashboard</field>
+            <field name="type">form</field>
+            <field name="model">board.board</field>
+            <field name="arch" type="xml">
+                <img src='https://pelni.co.id/cfind/source/thumb/images/cover_w886_h498_icon%20pelni%202.png' style="width:150px;float:left;"/>
+                <form string="Dashboard">
+                    <board style="1-1">
+                        <column>
+                            <action
+                                string="Deck Crane by Location"
+                                name="%(deckcrane.action_ins_location_dashboard)d"/>
+
+                            <action
+                                string="Inspection Schedule Summary"
+                                name="%(deckcrane.action_ins_schedule_dashboard)d"/>
+                        </column>
+                        <column>
+                           <action
+                                string="Time Inspection Deck Crane"
+                                name="%(deckcrane.action_ins_deckcrane_dashboard)d"/>
+                        </column>
+
+
+                    </board>
+                </form>
+            </field>
+        </record>
+         <record id="deckcrane_dashboard" model="ir.actions.act_window">
+            <field name="name">Dashboard</field>
+            <field name="res_model">board.board</field>
+            <field name="view_mode">form</field>
+            <field name="usage">menu</field>
+            <field name="view_id" ref="board_deckcrane"/>
+        </record>
+
+         <menuitem
+            id="dashboard_deckcrane"
+            name="Dashboard"
+            parent="menu_deckcrane"
+            action="deckcrane_dashboard"
+            sequence="1"/>
+
+
+    </data>
+</odoo>

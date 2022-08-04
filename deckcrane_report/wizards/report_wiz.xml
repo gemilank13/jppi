@@ -1,0 +1,40 @@
+<odoo>
+	<data>
+
+		<record model="ir.ui.view" id="performancy_report_wizard">
+	        <field name="name">Performancy Report Wizard</field>
+	        <field name="model">performancy.report.wizard</field>
+	        <field name="type">form</field>
+	        <field name="arch" type="xml">
+	            <form string="Performancy Report">
+	                <group string="Period of Report">
+	                    <group>
+	                        <field name="date_start"/>
+	                    </group>
+	                    <group>
+	                        <field name="date_end"/>
+	                    </group>
+	                </group>
+	                <group string="Home Base">
+	                	<field name="city_id"/>
+	                </group>
+	                <footer>
+	                    <button name="get_report" string="Print" type="object" class="oe_highlight"/>
+	                    <button string="Cancel" special="cancel"/>
+	                </footer>
+	            </form>
+	        </field>
+	    </record>
+
+	    <act_window id="action_performancy_report_wizard"
+	                name="Performancy Report"
+	                res_model="performancy.report.wizard"
+	                view_mode="form"
+	                target="new"/>
+
+	    <menuitem action="action_performancy_report_wizard"
+	              id="menu_performancy_report_wizard"
+	              parent="deckcrane.menu_deckcrane" sequence="12"/>
+
+	</data>
+</odoo>

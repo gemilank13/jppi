@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <data>
+      <report id="performancy_report"
+       model="performancy.report.wizard"
+       string="Performancy Report"
+       report_type="qweb-pdf"
+       name="deckcrane_report.performancy_report_view"
+       menu="False"/>
+
+
+
+       <template id="performancy_report_view">
+          <t t-call="web.html_container">
+            <!-- <t t-foreach="docs" t-as="o"> -->
+               <t t-call="web.basic_layout">
+
+                  <div class="header" style="border-bottom: 1px solid black;">
+                     <div class="row">
+                        <div class="col-6">
+                           <h3>Performancy Report</h3>
+                        </div>
+                        <div class="col-6">
+                           <img src='/web/binary/company_logo' style="width:200px;float:right;padding-top:20px;"/>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="page">
+                     <div class="row">
+                        <div class="col-12">
+                           <table style="width:100%;">
+                              <tr>
+                                 <td colspan="2" style="font-size:18px"><b>Period Report</b></td>
+                              </tr>
+                              <t t-if="city_id">
+                                 <tr>
+                                    <td style="width:30%;"><b>Ship Home Base</b></td>
+                                    <td><b>: <t t-esc="city_id"/></b></td>
+                                 </tr>
+                              </t>
+                              <tr>
+                                 <td>Start Date</td>
+                                 <td>: <t t-esc="date_start"/></td>
+                              </tr>
+                              <tr>
+                                 <td>Finish Date</td>
+                                 <td>: <t t-esc="date_end"/></td>
+                              </tr>
+                           </table>
+                        </div>
+                     </div>
+                     <t t-if="not city_id">
+                     <div class="row" style="padding-top:30px;">
+                        <div class="col-12">
+                           <table width="100%" style="font-size:14px;">
+                              <tr style="text-align:center;">
+                                 <td style="border:1px solid black;font-weight:bold;width:20%;">Name of Ship</td>
+                                 <td style="border:1px solid black;font-weight:bold;width:20%;">Type of Deck Crane</td>
+                                 <td style="border:1px solid black;font-weight:bold;width:10%;">Ship Home Base</td>
+                                 <td style="border:1px solid black;font-weight:bold;width:10%;">Total Down Time (Jam)</td>
+                                 <td style="border:1px solid black;font-weight:bold;width:10%;">Total Possible Time (Jam)</td>
+                                 <td style="border:1px solid black;font-weight:bold;width:10%;">Avalability (%)</td>
+                                 <td style="border:1px solid black;font-weight:bold;width:20%;">Main Couse Breakdown</td>
+                              </tr>
+                              <!-- <t t-set="total_possible" t-value="total"/> -->
+                              <t t-foreach="docs" t-as="doc">
+                                 <tr>
+                                    <td style="border:1px solid black;padding-left:10px;">
+                                       <span t-esc="doc['name_of_ship']"/>
+                                    </td>
+                                    <td style="border:1px solid black;padding-left:10px;">
+                                       <span t-esc="doc['crane_type']"/>
+                                    </td>
+                                    <td style="border:1px solid black;padding-left:10px;">
+                                       <span t-esc="doc['city']"/>
+                                    </td>
+                                    <td style="border:1px solid black;text-align:left;">
+                                       <span t-esc="doc['total_dt']"/>
+                                    </td>
+                                    <td style="border:1px solid black;text-align:left;">
+                                       <span t-esc="doc['total']"/>
+                                    </td>
+                                    <td style="border:1px solid black;text-align:left;">
+                                       <span t-esc="'%.2f'%(doc['avala'])"/>%
+                                       
+                                    </td>
+                                    <td style="border:1px solid black;padding-left:10px;">
+                                       <span t-esc="doc['breakdown_condition']"/>
+                                    </td>
+                                 </tr>
+                              </t>
+                           </table>
+                        </div>
+                     </div>
+                     </t>
+
+
+                     <t t-if="city_id">
+                     <div class="row" style="padding-top:30px;">
+                        <div class="col-8">
+                           <table width="100%" style="font-size:14px;">
+                              <tr style="text-align:center;">
+                                 <td style="border:1px solid black;font-weight:bold;width:20%;">Name of Ship</td>
+                                 <td style="border:1px solid black;font-weight:bold;width:10%;">Total Down Time (Jam)</td>
+                                 <td style="border:1px solid black;font-weight:bold;width:10%;">Total Possible Time (Jam)</td>
+                                 <td style="border:1px solid black;font-weight:bold;width:10%;">Avalability (%)</td>
+                              </tr>
+                              <t t-foreach="docs" t-as="doc">
+                                 <t t-if="doc['city'] == city_id">
+                                    <tr>
+                                       <td style="border:1px solid black;padding-left:10px;">
+                                          <span t-esc="doc['name_of_ship']"/>
+                                       </td>
+                                       
+                                       <td style="border:1px solid black;text-align:left;">
+                                       <span t-esc="doc['total_dt']"/>
+                                       </td>
+                                       <td style="border:1px solid black;text-align:left;">
+                                          <span t-esc="doc['total']"/>
+                                       </td>
+                                       <td style="border:1px solid black;text-align:left;">
+                                          <span t-esc="'%.2f'%(doc['avala'])"/>%
+                                          
+                                       </td>
+                                    </tr>
+                                 </t>
+                              </t>
+                           </table>
+                        </div>
+                     </div>
+                     </t>
+
+                  </div>
+
+               </t>
+            <!-- </t> -->
+          </t>
+      </template>
+   </data>
+</odoo>
+
